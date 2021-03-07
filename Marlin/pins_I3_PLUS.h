@@ -43,9 +43,12 @@
 #else
     #define X_STOP_PIN     54   // PF0 / A0
     #define Y_STOP_PIN     24   // PA2 / AD2
-    #define Z_STOP_PIN     23   // PA1 / AD1
-    // Thanasis: The extra header for the probe is connected to pin 25
-    #define Z_MIN_PROBE_PIN 25
+    // Thanasis: These are the "real" assignments
+    // #define Z_STOP_PIN     23   // PA1 / AD1
+    // #define Z_MIN_PROBE_PIN 25
+
+    // Thanasis: Here I specify to Marlin to use the zprobe pin as an endstop pin
+    #define Z_STOP_PIN     25
 #endif
 
 //

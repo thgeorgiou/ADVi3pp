@@ -728,8 +728,8 @@
  * Enable this option for a probe connected to the Z Min endstop pin.
  */
 // @advi3++: From v4, use the min probe connector for BLTouch. Idem for Mark II
-// @Thanasis: The inductive probe is connected to the "extra" pin, not z-min
-// #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+// @Thanasis: The inductive probe is connected to the "extra" pin but the assignment is changed at the pins.h file
+#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 /**
  * Z_MIN_PROBE_ENDSTOP
@@ -750,7 +750,7 @@
  * disastrous consequences. Use with caution and do your homework.
  *
  */
-#define Z_MIN_PROBE_ENDSTOP
+// #define Z_MIN_PROBE_ENDSTOP
 
 /**
  * Probe Type
