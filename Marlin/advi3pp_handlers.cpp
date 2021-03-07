@@ -83,15 +83,15 @@ namespace
         auto teaching_tech_side  = F("Teaching Tech L. Side");
         auto custom              = F("Custom");
 
-#if defined(ADVi3PP_MARK2)
+// #if defined(ADVi3PP_MARK2)
         auto mark2               = F("Mark II");
         static const FlashChar* names[advi3pp::SensorSettings::NB_SENSOR_POSITIONS] =
           {mark2, teaching_tech_side, custom};
-#elif defined(ADVi3PP_BLTOUCH)
-        auto baseggio            = F("Indianagio Front");
-        static const FlashChar* names[advi3pp::SensorSettings::NB_SENSOR_POSITIONS] =
-          {baseggio, teaching_tech_side, custom};
-#endif
+// #elif defined(ADVi3PP_BLTOUCH)
+//         auto baseggio            = F("Indianagio Front");
+//         static const FlashChar* names[advi3pp::SensorSettings::NB_SENSOR_POSITIONS] =
+//           {baseggio, teaching_tech_side, custom};
+// #endif
         assert(index < advi3pp::SensorSettings::NB_SENSOR_POSITIONS);
         return names[index];
     }
@@ -2896,7 +2896,7 @@ void PidSettings::set_best_pid(TemperatureKind kind, uint16_t temperature)
             index_ = i;
         }
     }
-	
+
 	Log::log() << (kind_ == TemperatureKind::Bed ? F("Bed") : F("Hotend"))
 	           << F(" PID with smallest difference (") << best_difference << F(") is at index #") << index_ << Log::endl();
     set_current_pid();
@@ -2944,7 +2944,7 @@ void PidSettings::save_data()
     pid.Kp_ = static_cast<float>(p.word) / 100;
     pid.Ki_ = static_cast<float>(i.word) / 100;
     pid.Kd_ = static_cast<float>(d.word) / 100;
-	
+
 	set_current_pid();
 }
 

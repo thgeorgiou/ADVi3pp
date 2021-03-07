@@ -728,7 +728,8 @@
  * Enable this option for a probe connected to the Z Min endstop pin.
  */
 // @advi3++: From v4, use the min probe connector for BLTouch. Idem for Mark II
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+// @Thanasis: The inductive probe is connected to the "extra" pin, not z-min
+// #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 /**
  * Z_MIN_PROBE_ENDSTOP
@@ -749,7 +750,7 @@
  * disastrous consequences. Use with caution and do your homework.
  *
  */
-//#define Z_MIN_PROBE_ENDSTOP
+#define Z_MIN_PROBE_ENDSTOP
 
 /**
  * Probe Type
@@ -771,9 +772,10 @@
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
 // @advi3++: Mark II probe is fix
-#ifdef ADVi3PP_MARK2
+// @Thanasis: Comment-out the if-def since we are using a fix-mounted probe
+// #ifdef ADVi3PP_MARK2
 #define FIX_MOUNTED_PROBE
-#endif
+// #endif
 
 /**
  * Z Servo Probe, such as an endstop switch on a rotating arm.
@@ -860,9 +862,9 @@
  *    (0,0)
  */
 // @advi3++: These are no more used by ADVi3++ since it is dynamic. Use instead advi3pp::x_probe_offset_from_extruder, ...
-//#define X_PROBE_OFFSET_FROM_EXTRUDER 0   // X offset: -left  +right  [of the nozzle]
-//#define Y_PROBE_OFFSET_FROM_EXTRUDER 0   // Y offset: -front +behind [the nozzle]
-//#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+// #define X_PROBE_OFFSET_FROM_EXTRUDER 0   // X offset: -left  +right  [of the nozzle]
+// #define Y_PROBE_OFFSET_FROM_EXTRUDER 20   // Y offset: -front +behind [the nozzle]
+// #define Z_PROBE_OFFSET_FROM_EXTRUDER 20   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 10
@@ -1066,23 +1068,25 @@
  *   leveling in steps so you can manually adjust the Z height at each grid-point.
  *   With an LCD controller the process is guided step-by-step.
  */
-#ifdef ADVi3PP_PROBE
+// @Thanasis: Comment out ifdef to enable bilinear probing
+// #ifdef ADVi3PP_PROBE
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 // @advi3++: Use bilinear leveling (mesh)
 #define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
-#endif
+// #endif
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
 // @advi3++: Restore leveling after G28 (only when using a sensor)
-#ifdef ADVi3PP_PROBE
+// @thanasis: Enable restoring after G28
+// #ifdef ADVi3PP_PROBE
 #define RESTORE_LEVELING_AFTER_G28
-#endif
+// #endif
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1247,18 +1251,15 @@
 //
 // @advi3++: From v4, use safe homing. From 4.0.1 only for BLTouch
 
-#if defined(ADVi3PP_BLTOUCH) || defined(ADVi3PP_BLTOUCH3)
+// @Thanasis: Enable Z_SAFE_HOMING
+// #if defined(ADVi3PP_BLTOUCH) || defined(ADVi3PP_BLTOUCH3)
 #define Z_SAFE_HOMING
-#endif
+// #endif
 
 #if ENABLED(Z_SAFE_HOMING)
-#if ENABLED(ADVi3PP_PROBE) // @advi3++: In the middle of the bed
+// @ Thanasis: Probe middle of bed
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
-#else // @advi3++: No probe -> in the corner
-  #define Z_SAFE_HOMING_X_POINT ((X_MIN_POS) + 10)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT ((Y_MIN_POS) + 10)    // Y point for Z homing when homing all axes (G28).
-#endif
 #endif
 
 // Homing speeds (mm/m)
