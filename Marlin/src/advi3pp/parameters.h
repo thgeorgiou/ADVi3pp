@@ -76,3 +76,6 @@
 #if defined(BLTOUCH) || defined(ADVi3PP_54)
     #define ADVi3PP_PROBE 1
 #endif
+
+// @Thanasis: Enable probe for all builds
+#define ADVi3PP_PROBE 1

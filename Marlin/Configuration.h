@@ -1196,7 +1196,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-// @advi3++: Set reasonable default values for Wanhao i3 Plus 
+// @advi3++: Set reasonable default values for Wanhao i3 Plus
 #define DEFAULT_MAX_FEEDRATE          { 450, 450, 10, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1226,7 +1226,7 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-// @advi3++: Set reasonable default values for Wanhao i3 Plus 
+// @advi3++: Set reasonable default values for Wanhao i3 Plus
 #define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  800    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   800    // X, Y, Z acceleration for travel (non printing) moves
@@ -1298,10 +1298,11 @@
  * The probe replaces the Z-MIN endstop and is used for Z homing.
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+// @Thanasis: The inductive probe is connected to the "extra" pin, not z-min
+// #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1343,9 +1344,10 @@
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
 // @advi3++: Mark II probe is fix
-#ifdef ADVi3PP_54
+// @Thanasis: Comment-out the if-def since we are using a fix-mounted probe
+// #ifdef ADVi3PP_54
 #define FIX_MOUNTED_PROBE
-#endif
+// #endif
 
 /**
  * Use the nozzle as the probe, as with a conductive
@@ -1932,7 +1934,7 @@
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
- 
+
 // @advi3++: Restore leveling after G28 (only when using a sensor)
 #ifdef ADVi3PP_PROBE
   #define RESTORE_LEVELING_AFTER_G28
@@ -2313,7 +2315,7 @@
  *    P0  (Default) If Z is below park Z raise the nozzle.
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
- */ 
+ */
 // @advi3++: Enable nozzle parking
 #define NOZZLE_PARK_FEATURE
 // @advi3++: Do not park in case of hardware error

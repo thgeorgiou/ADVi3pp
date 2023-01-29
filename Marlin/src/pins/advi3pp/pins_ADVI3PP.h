@@ -36,26 +36,30 @@
 #define X_STOP_PIN              54   // PF0 / ADC0 - A0
 #define Y_STOP_PIN              24   // PA2 / AD2
 
-#if MB(ADVI3PP_I3_PLUS_51)
-  #if ENABLED(BLTOUCH)
-    #define Z_STOP_PIN          25   // PA3 / AD3
-    #define Z_MIN_PROBE_PIN     25   // PA3 / AD3
-    #define SERVO0_PIN          40   // PG1 / !RD
-  #else
-    #define Z_STOP_PIN          23   // PA1 / AD1
-  #endif
-#elif MB(ADVI3PP_I3_PLUS_52C)
-  #define Z_STOP_PIN             6   // PH3 / PWM6
-  #define Z_MIN_PROBE_PIN        6   // PH3 / PCINT8
-  #if ENABLED(BLTOUCH)
-    #define SERVO0_PIN          40   // PG1 / !RD
-  #endif
-#elif MB(ADVI3PP_I3_PLUS_54)
-  #define Z_STOP_PIN             6   // PH3 / PCINT8
-  #define Z_MIN_PROBE_PIN        6   // PH3 / PCINT8
-#else
-  #error "Unknown ADVi3++ mainboard"
-#endif
+// #if MB(ADVI3PP_I3_PLUS_51)
+//   #if ENABLED(BLTOUCH)
+//     #define Z_STOP_PIN          25   // PA3 / AD3
+//     #define Z_MIN_PROBE_PIN     25   // PA3 / AD3
+//     #define SERVO0_PIN          40   // PG1 / !RD
+//   #else
+//     #define Z_STOP_PIN          23   // PA1 / AD1
+//   #endif
+// #elif MB(ADVI3PP_I3_PLUS_52C)
+//   #define Z_STOP_PIN             6   // PH3 / PWM6
+//   #define Z_MIN_PROBE_PIN        6   // PH3 / PCINT8
+//   #if ENABLED(BLTOUCH)
+//     #define SERVO0_PIN          40   // PG1 / !RD
+//   #endif
+// #elif MB(ADVI3PP_I3_PLUS_54)
+//   #define Z_STOP_PIN             6   // PH3 / PCINT8
+//   #define Z_MIN_PROBE_PIN        6   // PH3 / PCINT8
+// #else
+//   #error "Unknown ADVi3++ mainboard"
+// #endif
+
+// @Thanasis Where i have the Zprobe connected
+#define Z_STOP_PIN 25
+#define Z_MIN_PROBE_PIN 25
 
 //
 // Steppers

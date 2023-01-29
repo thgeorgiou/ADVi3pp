@@ -47,7 +47,9 @@ const FlashChar* get_sensor_name(size_t index) {
   auto mark2               = F("Mark II");
   static const FlashChar* names[NB_SENSOR_POSITIONS + 1] = {your, mark2, teaching_tech_side, advi3pp};
 #else
-#error "ADVi3PP_PROBE is defined but the kind of probe is unknown"
+  // Custom sensor type!
+  auto than = F("Thanasis");
+  static const FlashChar *names[NB_SENSOR_POSITIONS + 1] = {your, than, teaching_tech_side, advi3pp};
 #endif
 
   assert(index <= NB_SENSOR_POSITIONS);
@@ -65,7 +67,9 @@ const SensorPosition SENSOR_POSITION[NB_SENSOR_POSITIONS] = {
   { -2400, -3800 },    // Teaching Tech Left
   { -2800, -4000 }     // ADVi3++ Left
 #else
-#error "ADVi3PP_PROBE is defined but the kind of probe is unknown"
+  {0, 6000},      // Mark II
+  {-2400, -3800}, // Teaching Tech Left
+  {-2800, -4000}  // ADVi3++ Left
 #endif
 };
 #endif
